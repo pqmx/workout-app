@@ -1,7 +1,8 @@
 import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../supabase-client";
+import { ExerciseData } from "@/constants/alias";
 
-export default async function saveWorkout(workout) {
+export default async function saveWorkout(workout: ExerciseData[]) {
 	const {
 		data: { user },
 	} = await supabase.auth.getUser();

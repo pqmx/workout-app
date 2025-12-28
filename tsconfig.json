@@ -3,7 +3,9 @@
 		"baseUrl": ".",
 		"paths": {
 			"@/*": ["*"]
-		}
+		},
+		"allowImportingTsExtensions": true,
+		"noEmit": true
 	},
 	"extends": "expo/tsconfig.base",
 	"include": [
@@ -11,8 +13,8 @@
 		"**/*.tsx",
 		".expo/types/**/*.ts",
 		"expo-env.d.ts",
-		"app/(auth)/sign-up.jsx",
-		"app/(auth)/sign-in.jsx",
-		"utils/auth.js"
+		"app/(auth)/sign-up.tsx",
+		"app/(auth)/sign-in.tsx",
+		"utils/auth.ts"
 	]
 }
