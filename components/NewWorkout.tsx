@@ -15,10 +15,7 @@ import ExerciseModal from "./ExerciseModal";
 import { Colors, Fonts, Spacing, Radius } from "@/constants/theme";
 import saveWorkout from "@/utils/saveWorkout.js";
 
-Text.defaultProps = Text.defaultProps || {};
-Text.defaultProps.style = { color: Colors.text };
-
-const monthNames = [
+const monthNames: string[] = [
 	"January",
 	"February",
 	"March",
@@ -33,11 +30,16 @@ const monthNames = [
 	"December",
 ];
 
-export default function NewWorkout({ visible, setVisible }) {
-	const [workout, setWorkout] = useState([]);
-	const [modalVisible, setModalVisible] = useState(false);
+interface visibleState {
+	visible: boolean;
+	setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-	function addSet(exerciseKey) {
+export default function NewWorkout({ visible, setVisible }: visibleState) {
+	const [workout, setWorkout] = useState([]);
+	const [modalVisible, setModalVisible] = useState<boolean>(false);
+
+	const addSet = (exerciseKey: string) => {
 		setWorkout((prev) =>
 			prev.map((exercise) =>
 				exercise.key === exerciseKey
@@ -48,9 +50,9 @@ export default function NewWorkout({ visible, setVisible }) {
 					: exercise
 			)
 		);
-	}
+	};
 
-	function deleteSet(exerciseKey, setKey) {
+	const deleteSet = (exerciseKey: string, setKey: string) => {
 		setWorkout((prev) =>
 			prev.map((exercise) =>
 				exercise.key === exerciseKey
@@ -61,13 +63,13 @@ export default function NewWorkout({ visible, setVisible }) {
 					: exercise
 			)
 		);
-	}
+	};
 
-	function deleteExercise(exerciseKey) {
+	const deleteExercise = (exerciseKey: string) => {
 		setWorkout((prev) =>
 			prev.filter((exercise) => exercise.key !== exerciseKey)
 		);
-	}
+	};
 
 	const now = new Date();
 
@@ -79,7 +81,6 @@ export default function NewWorkout({ visible, setVisible }) {
 			<View style={styles.container}>
 				<StatusBar style="light" />
 
-				{/* Cancel Workout */}
 				<View style={{ alignItems: "flex-end" }}>
 					<TouchableOpacity
 						style={[
@@ -112,7 +113,6 @@ export default function NewWorkout({ visible, setVisible }) {
 							saveWorkout(workout);
 							setVisible(false);
 							setWorkout([]);
-							// append to db
 						}}
 					>
 						<Text style={styles.buttonText}>Finish</Text>

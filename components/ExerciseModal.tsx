@@ -8,21 +8,18 @@ import {
 	Modal,
 	FlatList,
 } from "react-native";
-Text.defaultProps = Text.defaultProps || {};
-Text.defaultProps.style = { color: "white" };
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import exercises from "../data/exercises.json";
 import { Colors, Fonts, Spacing } from "@/constants/theme";
+import { propsModal } from "@/constants/alias";
 
-Text.defaultProps = Text.defaultProps || {};
-Text.defaultProps.style = { color: Colors.text };
-
-function capitalize(str) {
+function capitalize(str: string): string {
 	return str[0].toUpperCase() + str.slice(1).toLowerCase();
 }
 
-export default function ExerciseModal(props) {
+export default function ExerciseModal(props: propsModal) {
+	console.log(props);
 	return (
 		<Modal
 			animationType="slide"

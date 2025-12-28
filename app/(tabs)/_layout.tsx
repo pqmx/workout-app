@@ -22,7 +22,6 @@ export default function RootLayout() {
 						backgroundColor: "#04161C",
 					},
 					tabBarActiveTintColor: colors.accent,
-					tabBarSafeAreaInsets: { bottom: 0 },
 					headerShown: false,
 				}}
 			>

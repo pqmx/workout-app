@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { Colors, Fonts, Spacing, Radius } from "@/constants/theme";
 import { Image } from "expo-image";
-import { signIn } from "../../utils/auth";
+import { signUp } from "../../utils/auth";
 import { useState } from "react";
 import { Link } from "expo-router";
 
@@ -80,7 +80,7 @@ export default function Index() {
 						{ marginTop: Spacing.xl },
 					]}
 					onPress={async () => {
-						await signIn(email, password);
+						await signUp(email, password);
 					}}
 				>
 					<Text style={{ textAlign: "center" }}>Continue</Text>

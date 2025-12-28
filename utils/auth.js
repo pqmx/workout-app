@@ -1,10 +1,12 @@
+import { supabase } from "@/supabase-client.ts";
+
 export async function signIn(email, password) {
 	const { error: signInError } = await supabase.auth.signInWithPassword({
 		email,
 		password,
 	});
 	if (signInError) {
-		console.error("Error signing up: ", signUpError.message);
+		console.error("Error signing up: ", signInError.message);
 	}
 }
 

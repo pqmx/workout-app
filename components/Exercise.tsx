@@ -8,6 +8,7 @@ import {
 import "react-native-get-random-values";
 import { v4 as uuidv4 } from "uuid";
 import { Colors, Fonts, Spacing, Radius } from "@/constants/theme";
+import { exerciseProps, UpdateSet } from "@/constants/alias";
 
 export default function Exercise({
 	exerciseData,
@@ -15,8 +16,8 @@ export default function Exercise({
 	deleteSet,
 	setWorkout,
 	deleteExercise,
-}) {
-	const updateSet = (exerciseKey, setKey, type, value) => {
+}: exerciseProps) {
+	const updateSet: UpdateSet = (exerciseKey, setKey, type, value): void => {
 		setWorkout((prev) =>
 			prev.map((exercise) =>
 				exercise.key === exerciseKey
@@ -100,9 +101,7 @@ export default function Exercise({
 			{/* Add Set Button */}
 			<TouchableOpacity
 				style={styles.button}
-				onPress={() =>
-					addSet(exerciseData.key, { key: uuidv4(), weight: "", reps: "" })
-				}
+				onPress={() => addSet(exerciseData.key)}
 			>
 				<Text style={styles.buttonText}>Add Set</Text>
 			</TouchableOpacity>

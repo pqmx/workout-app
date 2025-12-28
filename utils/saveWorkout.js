@@ -2,16 +2,19 @@ import { v4 as uuidv4 } from "uuid";
 import { supabase } from "../supabase-client";
 
 export default async function saveWorkout(workout) {
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+
 	const now = new Date();
 	const workoutId = uuidv4();
-	const userId = "user1";
 
 	await supabase
 		.from("workouts")
 		.insert([
 			{
 				id: workoutId,
-				user_id: userId,
+				user_id: user.id, //will not work if we disable authentication.
 
 				date: now,
 			},
@@ -21,7 +24,7 @@ export default async function saveWorkout(workout) {
 	let exerciseOrder = 0;
 	for (const [i, exercise] of Object.entries(workout)) {
 		exerciseOrder = Number(i) + 1;
-		const { error, data } = await supabase.from("exercises").insert([
+		const { data, error } = await supabase.from("exercises").insert([
 			{
 				id: exercise.key,
 				workout_id: workoutId,
